@@ -63,7 +63,8 @@ function convertToEuros(salary, currency) {
     }
 }
 
-function loadData(selectedContinent, selectedCountry, dataUrl) {
+function loadData(selectedContinent, selectedCountry, selectedExperience, dataUrl) {
+
     if (selectedContinent == "Europe") {
         dataUrl = "http://localhost/R5.04/Projet_JS/data" + "/survey_results_WE.json";
     } else if (selectedContinent == "Amérique du Nord") {
@@ -78,6 +79,7 @@ function loadData(selectedContinent, selectedCountry, dataUrl) {
         .then(data => {
             processData(data, selectedCountry);
             processData2(data, selectedCountry);
+            processData3(data, selectedExperience, selectedCountry);
         })
         .catch(error => {
             console.error("Erreur lors du chargement des données:", error);
@@ -172,7 +174,8 @@ function updateCharts() {
     const selectedContinent = document.getElementById('continent').value;
     const selectedCountry = document.getElementById('country').value;
     const dataUrl = document.getElementById('dataUrl').value;
-    loadData(selectedContinent, selectedCountry, dataUrl);
+    const selectedExperience = document.getElementById('experienceSelect').value;
+    loadData(selectedContinent, selectedCountry, selectedExperience, dataUrl);
 }
 
 updateCountryOptions(document.getElementById('continent').value);

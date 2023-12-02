@@ -18,7 +18,7 @@ function createHistogram1(labels, data) {
           data: {
               labels: labels,
               datasets: [{
-                  label: "Salaire moyen",
+                  label: "Salaire moyen par tranche d'expérience",
                   data: data,
                   backgroundColor: 'rgba(54, 162, 235, 0.7)', // Couleur de fond des barres
                   borderColor: 'rgb(54, 162, 235)',
@@ -27,7 +27,7 @@ function createHistogram1(labels, data) {
           },
           options: {
               scales: {
-                  x: {
+                    x: {
                       beginAtZero: true,
                       title: {
                           display: true,

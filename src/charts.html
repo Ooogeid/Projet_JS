@@ -108,10 +108,20 @@
                                 <div class="card mb-4">
                                     <div class="card-header">
                                         <i class="fas fa-chart-pie me-1"></i>
-                                        Pie Chart Example
+                                        Revenu moyen d'un professionnel en fonction des plateformes de Cloud utilisés.
                                     </div>
-                                    <div class="card-body"><canvas id="myPieChart" width="100%" height="50"></canvas></div>
-                                    <div class="card-footer small text-muted">Updated yesterday at 11:59 PM</div>
+                                    <div class="card-body">
+                                        <div class="form-group">
+                                            <label for="experienceSelect">Tranche d'années d'expérience :</label>
+                                            <select class="form-control" id="experienceSelect" onchange="updateCharts()">
+                                                <option value="0-5">0-5 ans</option>
+                                                <option value="5-10">5-10 ans</option>
+                                                <option value="10-20">10-20 ans</option>
+                                                <option value="20+">Plus de 20 ans</option>
+                                            </select>
+                                        </div>
+                                        <canvas id="myBarChart" width="100%" height="50"></canvas>
+                                    </div>
                                 </div>
                             </div>
                         </div>
@@ -134,9 +144,10 @@
         <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" crossorigin="anonymous"></script>
         <script src="js/chart1.js"></script>
         <script src="js/chart2.js"></script>
+        <script src="js/chart3.js"></script>
         <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.8.0/Chart.min.js" crossorigin="anonymous"></script>
         <script src="assets/demo/chart-bar-1.js"></script>
         <script src="assets/demo/chart-bar-2.js"></script>
-        <script src="assets/demo/chart-pie-demo.js"></script>
+        <script src="assets/demo/chart-pie-3.js"></script>
     </body>
 </html>

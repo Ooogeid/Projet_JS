@@ -1,7 +1,7 @@
 updateCountryOptions(document.getElementById('continent').value);
 
 function processData2(data, selectedCountry) {
-    
+
     const filteredData = data.filter(entry =>
         entry.MainBranch === "I am a developer by profession" &&
         entry.Currency !== 'NA' &&
@@ -38,14 +38,10 @@ function processData2(data, selectedCountry) {
             });
         }
     });
-    console.log(averageSalariesByEducation)
-    // Trier les données par niveau d'éducation
-    averageSalariesByEducation.sort((a, b) => {
-        const educationOrder = ['No formal education', 'Primary/elementary school', 'Secondary school', 'Some college/university study without earning a degree', 
-        'Associate degree', 'Bachelor’s degree', 'Professional degree', 'Master’s degree', 
-        'Other doctoral degree', 'Doctoral degree'];
 
-        return educationOrder.indexOf(a.educationLevel) - educationOrder.indexOf(b.educationLevel);
+    // trier les données par salaire croissant
+    averageSalariesByEducation.sort((a, b) => {
+        return a.averageSalary - b.averageSalary;
     });
 
     createHistogram2(
@@ -55,7 +51,8 @@ function processData2(data, selectedCountry) {
 }
 
 function getEducationLabel(educationLevel) {
-    return educationLevel;
+    const shortenedLabel = educationLevel.replace(/\s*\(.*?\)\s*/g, "");
+    return shortenedLabel;
 }
 
 updateCharts();
