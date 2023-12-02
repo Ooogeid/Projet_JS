@@ -1,6 +1,12 @@
 
 let myChart;
 
+function updateChart() {
+    const selectedContinent = document.getElementById('continent').value;
+    const selectedCountry = document.getElementById('country').value;
+    const dataUrl = document.getElementById('dataUrl').value;
+    loadData(selectedContinent, selectedCountry, dataUrl);
+}
 
 // Fonction pour convertir le salaire en euros
 function convertToEuros(salary, currency) {
@@ -87,7 +93,7 @@ function processData(data, selectedCountry) {
 
     averageSalariesByExperience.sort((a, b) => a.experience - b.experience);
 
-    const chartCanvas = document.getElementById('chart');
+    const chartCanvas = document.getElementById('myLineChart1');
     if (chartCanvas) {
         const ctx = chartCanvas.getContext('2d');
         if (myChart) {
@@ -136,3 +142,4 @@ function parseExperience(experience) {
     return experienceRange.reduce((a, b) => a + b) / experienceRange.length;
 }
     
+updateChart();
