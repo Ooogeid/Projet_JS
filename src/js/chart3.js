@@ -38,7 +38,7 @@ function processData3(data, selectedExperience, selectedCountry) {
     averageIncomeByPlatform.sort((a, b) => {
         return b.averageSalary - a.averageSalary;
     });
-    console.log(averageIncomeByPlatform);
+
     createBarChart(
         averageIncomeByPlatform.map(item => item.platform),
         averageIncomeByPlatform.map(item => item.averageSalary)

@@ -14,39 +14,39 @@ function createHistogram1(labels, data) {
       // Si le graphique n'existe pas, on le créer
       var ctx = document.getElementById("myHistogramChart1");
       myHistogramChart1 = new Chart(ctx, {
-          type: 'bar',
-          data: {
-              labels: labels,
-              datasets: [{
-                  label: "Salaire moyen par tranche d'expérience",
-                  data: data,
-                  backgroundColor: 'rgba(54, 162, 235, 0.7)', // Couleur de fond des barres
-                  borderColor: 'rgb(54, 162, 235)',
-                  borderWidth: 1
-              }]
-          },
-          options: {
-              scales: {
-                    x: {
-                      beginAtZero: true,
-                      title: {
-                          display: true,
-                          text: 'Tranche d\'expérience (années)'
-                      }
-                  },
-                  y: {
-                      title: {
-                          display: true,
-                          text: 'Salaire moyen en euros'
-                      }
-                  }
-              },
-              legend: {
-                onClick: function (e) {
-                    e.stopPropagation();
+        type: 'bar',
+        data: {
+            labels: labels,
+            datasets: [{
+                label: "Salaire moyen par tranche d'expérience",
+                data: data,
+                backgroundColor: 'rgba(54, 162, 235, 0.7)', // Couleur de fond des barres
+                borderColor: 'rgb(54, 162, 235)',
+                borderWidth: 1
+            }]
+        },
+        options: {
+        scales: {
+            x: {
+                beginAtZero: true,
+                title: {
+                    display: true,
+                    text: 'Tranche d\'expérience (années)'
+                }
+            },
+            y: {
+                title: {
+                    display: true,
+                    text: 'Salaire moyen en euros'
                 }
             }
-          }
+        },
+        legend: {
+            onClick: function (e) {
+                e.stopPropagation();
+            }
+        }
+    }
       });
   }
 }
