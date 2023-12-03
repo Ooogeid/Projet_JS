@@ -82,6 +82,7 @@ function loadData(selectedContinent, selectedCountry, selectedExperience, select
             processData3(data, selectedExperience, selectedCountry);
             processData4(data, selectedExperience, selectedCountry);
             processData5(data, selectedDevType, topCount, selectedCountry);
+            processData6(data, selectedDevType, topCount, selectedCountry);
         })
         .catch(error => {
             console.error("Erreur lors du chargement des données:", error);
@@ -89,7 +90,7 @@ function loadData(selectedContinent, selectedCountry, selectedExperience, select
 }
 
 function processData(data, selectedCountry) {
-    // console.log(data);
+    console.log(data);
     const filteredData = data.filter(entry =>
         entry.MainBranch === "I am a developer by profession" &&
         entry.Currency !== 'NA' &&
