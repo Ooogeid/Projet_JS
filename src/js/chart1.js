@@ -90,7 +90,7 @@ function loadData(selectedContinent, selectedCountry, selectedExperience, select
 }
 
 function processData(data, selectedCountry) {
-    console.log(data);
+    // console.log(data);
     const filteredData = data.filter(entry =>
         entry.MainBranch === "I am a developer by profession" &&
         entry.Currency !== 'NA' &&
@@ -184,4 +184,4 @@ function updateCharts() {
     loadData(selectedContinent, selectedCountry, selectedExperience, selectedDevType, topCount, dataUrl);
 }
 
-updateCountryOptions(document.getElementById('continent').value);
+updateCountryOptions(document.getElementById('continent').value);   

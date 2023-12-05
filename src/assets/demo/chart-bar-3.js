@@ -1,4 +1,3 @@
-// Set new default font family and font color to mimic Bootstrap's default styling
 Chart.defaults.global.defaultFontFamily = '-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif';
 Chart.defaults.global.defaultFontColor = '#292b2c';
 
@@ -59,14 +58,24 @@ function createBarChart(labels, data) {
           text: 'Revenu moyen par plateforme de cloud',
         },
         scales: {
-          y: {
-            beginAtZero: true,
+          yAxes: [{
             ticks: {
+              beginAtZero: true,
               callback: function (value, index, values) {
                 return value + ' €';
               }
+            },
+            scaleLabel: {
+              display: true,
+              labelString: 'Revenu moyen (en euros)'
             }
-          }
+          }],
+          xAxes: [{
+            scaleLabel: {
+              display: true,
+              labelString: 'Plateforme de cloud'
+            }
+          }]
         }
       }
     });

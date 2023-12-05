@@ -1,11 +1,10 @@
-
 Chart.defaults.global.defaultFontFamily = '-apple-system,system-ui,BlinkMacSystemFont,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif';
 Chart.defaults.global.defaultFontColor = '#292b2c';
 
 let myLineChart;
 
 function createHistogram2(labels, data) {
-  if(myLineChart) {
+  if (myLineChart) {
     myLineChart.data.labels = labels;
     myLineChart.data.datasets[0].data = data;
     myLineChart.update();
@@ -24,28 +23,30 @@ function createHistogram2(labels, data) {
         }]
       },
       options: {
-          responsive: true,
-            scales: {
-                y: {
-                    beginAtZero: true,
-                    title: {
-                    display: true,
-                    text: 'Salaire moyen (en euros)'
-                  }
-                },
-                x: {
-                  title: {
-                    display: true,
-                    text: 'Nivaux d\'études'
-                  }
-                }
+        responsive: true,
+        scales: {
+          yAxes: [{
+            ticks: {
+              beginAtZero: true
             },
-          legend: {
-            onClick: function (e) {
-                e.stopPropagation();
+            scaleLabel: {
+              display: true,
+              labelString: 'Salaire moyen (en euros)'
             }
+          }],
+          xAxes: [{
+            scaleLabel: {
+              display: true,
+              labelString: 'Niveaux d\'études'
+            }
+          }]
+        },
+        legend: {
+          onClick: function (e) {
+            e.stopPropagation();
           }
-      } 
+        }
+      }
     });
   }
 }
