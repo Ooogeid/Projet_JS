@@ -130,6 +130,63 @@ function processData(data, selectedCountry) {
         console.error("Canvas non trouvé. Impossible de créer le graphique.");
     }
 }
+//======================================= FONCTION 3 ========================================================================================================
+// Fonction pour calculer et afficher le revenu moyen en fonction des plateformes de cloud
+function calculateAndDisplayAverageIncome(experience, continent, country) {
+    // Filtrer les données en fonction de l'expérience, du continent et du pays
+    const filteredData = processData(data, country).filter(item => item.experience === experience && item.continent === continent && item.country === country);
+
+    // Calculer le revenu moyen
+    const averageIncome = filteredData.reduce((total, item) => total + item.income, 0) / filteredData.length;
+
+    // Afficher le revenu moyen dans la console
+    console.log(`Le revenu moyen pour ${experience} années d'expérience, dans le continent ${continent} et le pays ${country} est de ${averageIncome} euros.`);
+
+    // Créer et afficher le graphique
+    createChart(filteredData);
+}
+
+// Fonction pour créer le graphique
+function createChart(data) {
+    // Code pour créer le graphique avec la bibliothèque de votre choix
+    // Utilisez les données fournies pour afficher le salaire moyen en fonction des années d'expérience
+    // Assurez-vous d'inclure les librairies nécessaires et de configurer correctement le graphique
+    // Exemple avec Chart.js :
+    const labels = data.map(item => item.experience);
+    const incomes = data.map(item => item.income);
+
+    if (myChart) {
+        myChart.destroy();
+    }
+
+    const ctx = document.getElementById('chart').getContext('2d');
+    myChart = new Chart(ctx, {
+        type: 'line',
+        data: {
+            labels: labels,
+            datasets: [{
+                label: 'Salaire moyen',
+                data: incomes,
+                backgroundColor: 'rgba(75, 192, 192, 0.2)',
+                borderColor: 'rgba(75, 192, 192, 1)',
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+}
+
+// Exemple d'utilisation de la fonction
+calculateAndDisplayAverageIncome(5, 'Europe', 'France');
+
+
+
 
 function parseExperience(experience) {
     const experienceRange = experience.split('-').map(Number);
