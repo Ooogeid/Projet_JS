@@ -15,7 +15,7 @@ function processData3(data, selectedExperience, selectedCountry) {
             if (!cloudPlatforms.has(platform)) {
                 cloudPlatforms.set(platform, []);
             }
-
+            
             cloudPlatforms.get(platform).push(convertedSalary);
         });
     });

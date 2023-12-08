@@ -4,9 +4,9 @@ function processData4(data, selectedExperience, selectedCountry) {
     isYearsCodeProInRange(entry.YearsCodePro, selectedExperience) &&
     entry.Country === selectedCountry
   );  
-      
-  const webFrameworks = new Map();
     
+  const webFrameworks = new Map();
+
   filteredData.forEach(entry => {
     const frameworks = entry.WebframeHaveWorkedWith.split(';');
     const convertedSalary = convertToEuros(parseInt(entry.CompTotal) || 0, entry.Currency);

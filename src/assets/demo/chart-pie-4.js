@@ -4,34 +4,6 @@ Chart.defaults.global.defaultFontColor = '#292b2c';
 let myFrameworkChart;
 
 function createFrameworkChart(labels, data) {
-  const colors = [
-    '#007bff',
-    '#dc3545',
-    '#ffc107',
-    '#28a745',
-    '#ff00ff',
-    '#00ffff',
-    '#ffff00',
-    '#ff0000',
-    '#00ff00',
-    '#0000ff',
-    '#ff7f00',
-    '#7fff00',
-    '#00ff7f',
-    '#ff00ff',
-    '#7f00ff',
-    '#ff007f',
-    '#00ff80',
-    '#ff8000',
-    '#0080ff',
-    '#8000ff',
-    '#ff80ff',
-    '#80ffbf',
-    '#80bfff',
-    '#bf80ff',
-    '#ffbf80',
-    '#80ffcc',
-  ];
 
   if (myFrameworkChart) {
     myFrameworkChart.data.labels = labels;
@@ -45,7 +17,7 @@ function createFrameworkChart(labels, data) {
         labels: labels,
         datasets: [{
           data: data,
-          backgroundColor: colors.slice(0, labels.length),
+          backgroundColor: 'rgba(75, 192, 192, 0.5)',
         }],
       },
       options: {

@@ -1,4 +1,8 @@
+document.addEventListener('DOMContentLoaded', function() {
+
 updateCountryOptions(document.getElementById('continent').value);
+
+});
 
 function processData2(data, selectedCountry) {
 

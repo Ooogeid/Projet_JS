@@ -1,4 +1,3 @@
-
 let myChart;
 
 function updateCountryOptions(selectedContinent) {
@@ -64,11 +63,12 @@ function convertToEuros(salary, currency) {
 }
 
 function loadData(selectedContinent, selectedCountry, selectedExperience, selectedDevType, topCount, dataUrl) {
-
+    
     if (selectedContinent == "Europe") {
-        dataUrl = "http://localhost/R5.04/Projet_JS/data" + "/survey_results_WE.json";
+        dataUrl =  dataWE;
+;
     } else if (selectedContinent == "Amérique du Nord") {
-        dataUrl = "http://localhost/R5.04/Projet_JS/data" + "/survey_results_NA.json";
+        dataUrl = dataNA;
     } else {
         console.error("Continent non pris en charge");
         return;
@@ -83,6 +83,7 @@ function loadData(selectedContinent, selectedCountry, selectedExperience, select
             processData4(data, selectedExperience, selectedCountry);
             processData5(data, selectedDevType, topCount, selectedCountry);
             processData6(data, selectedDevType, topCount, selectedCountry);
+            chartNbParticipantsParPays(data)
         })
         .catch(error => {
             console.error("Erreur lors du chargement des données:", error);
@@ -90,7 +91,7 @@ function loadData(selectedContinent, selectedCountry, selectedExperience, select
 }
 
 function processData(data, selectedCountry) {
-    // console.log(data);
+    console.log(data);
     const filteredData = data.filter(entry =>
         entry.MainBranch === "I am a developer by profession" &&
         entry.Currency !== 'NA' &&
@@ -184,4 +185,8 @@ function updateCharts() {
     loadData(selectedContinent, selectedCountry, selectedExperience, selectedDevType, topCount, dataUrl);
 }
 
+document.addEventListener('DOMContentLoaded', function() {
+
 updateCountryOptions(document.getElementById('continent').value);   
+
+});
