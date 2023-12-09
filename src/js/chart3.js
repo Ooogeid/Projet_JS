@@ -58,5 +58,3 @@ function isYearsCodeProInRange(yearsCodePro, selectedExperience) {
         return false;
     }
 }
-
-updateCharts();

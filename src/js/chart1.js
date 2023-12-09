@@ -1,41 +1,41 @@
 let myChart;
+// Variable globale pour stocker les données une fois récupérées
+let globalData = null;
 
 function updateCountryOptions(selectedContinent) {
     const countrySelect = document.getElementById('country');
     countrySelect.innerHTML = '';
-  
     let countries = [];
     if (selectedContinent === 'Europe') {
-      countries = [
-        { value: 'France', title: 'France' },
-        { value: 'Germany', title: 'Allemagne' },
-        { value: 'United Kingdom of Great Britain and Northern Ireland', title: 'Royaume-Uni' },
-        { value: 'Portugal', title: 'Portugal' },
-        { value: 'Switzerland', title: 'Suisse' },
-        { value: 'Netherlands', title: 'Pays-Bas' },
-        { value: 'Belgium', title: 'Belgique' },
-        { value: 'Spain', title: 'Espagne' },
-        { value: 'Italy', title: 'Italie' },
-        { value: 'Poland', title: 'Pologne' }
-      ];
+        countries = [
+            { value: 'France', title: 'France' },
+            { value: 'Germany', title: 'Allemagne' },
+            { value: 'United Kingdom of Great Britain and Northern Ireland', title: 'Royaume-Uni' },
+            { value: 'Portugal', title: 'Portugal' },
+            { value: 'Switzerland', title: 'Suisse' },
+            { value: 'Netherlands', title: 'Pays-Bas' },
+            { value: 'Belgium', title: 'Belgique' },
+            { value: 'Spain', title: 'Espagne' },
+            { value: 'Italy', title: 'Italie' },
+            { value: 'Poland', title: 'Pologne' }
+        ];
     } else if (selectedContinent === 'Amérique du Nord') {
-      countries = [
-        { value: 'United States of America', title: 'États-Unis' },
-        { value: 'Canada', title: 'Canada' }
-      ];
+        countries = [
+            { value: 'United States of America', title: 'États-Unis' },
+            { value: 'Canada', title: 'Canada' }
+        ];
     }
-  
-    countries.forEach(function(country) {
-      const option = document.createElement('option');
-      option.text = country.title;
-      option.value = country.value;
-      countrySelect.appendChild(option);
+
+    countries.forEach(function (country) {
+        const option = document.createElement('option');
+        option.text = country.title;
+        option.value = country.value;
+        countrySelect.appendChild(option);
     });
-  
+
     // Mettre à jour les graphiques avec les nouvelles données sélectionnées
     updateCharts();
 }
-
 
 // Fonction pour convertir le salaire en euros
 function convertToEuros(salary, currency) {
@@ -62,11 +62,21 @@ function convertToEuros(salary, currency) {
     }
 }
 
-function loadData(selectedContinent, selectedCountry, selectedExperience, selectedDevType, topCount, dataUrl) {
-    
+function updateCharts() {
+    const selectedContinent = document.getElementById('continent').value;
+    const selectedCountry = document.getElementById('country').value;
+    const selectedExperience = document.getElementById('experienceSelect').value;
+    const selectedDevType = document.getElementById('devTypeSelect').value;
+    const topCount = document.getElementById('topCountSelect').value;
+    loadData(selectedContinent, selectedCountry, selectedExperience, selectedDevType, topCount);
+}
+
+
+function loadData(selectedContinent, selectedCountry, selectedExperience, selectedDevType, topCount) {
+    let dataUrl;
+
     if (selectedContinent == "Europe") {
-        dataUrl =  dataWE;
-;
+        dataUrl = dataWE;
     } else if (selectedContinent == "Amérique du Nord") {
         dataUrl = dataNA;
     } else {
@@ -77,21 +87,24 @@ function loadData(selectedContinent, selectedCountry, selectedExperience, select
     fetch(dataUrl)
         .then(response => response.json())
         .then(data => {
+            // Stocker les données pour une utilisation ultérieure
+            globalData = data;
+            // Utiliser les données fraîchement chargées
             processData(data, selectedCountry);
             processData2(data, selectedCountry);
             processData3(data, selectedExperience, selectedCountry);
             processData4(data, selectedExperience, selectedCountry);
             processData5(data, selectedDevType, topCount, selectedCountry);
             processData6(data, selectedDevType, topCount, selectedCountry);
-            chartNbParticipantsParPays(data)
         })
         .catch(error => {
             console.error("Erreur lors du chargement des données:", error);
         });
 }
 
+
 function processData(data, selectedCountry) {
-    console.log(data);
+    // console.log(data);
     const filteredData = data.filter(entry =>
         entry.MainBranch === "I am a developer by profession" &&
         entry.Currency !== 'NA' &&
@@ -174,19 +187,6 @@ function getAgeLabel(ageRange) {
     }
 }
 
-function updateCharts() {
-
-    const selectedContinent = document.getElementById('continent').value;
-    const selectedCountry = document.getElementById('country').value;
-    const dataUrl = document.getElementById('dataUrl').value;
-    const selectedExperience = document.getElementById('experienceSelect').value;
-    const selectedDevType = document.getElementById('devTypeSelect').value;
-    const topCount = document.getElementById('topCountSelect').value;
-    loadData(selectedContinent, selectedCountry, selectedExperience, selectedDevType, topCount, dataUrl);
-}
-
-document.addEventListener('DOMContentLoaded', function() {
-
-updateCountryOptions(document.getElementById('continent').value);   
-
+document.addEventListener('DOMContentLoaded', function () {
+    updateCharts();
 });

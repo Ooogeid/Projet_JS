@@ -1,0 +1,2 @@
+Il faut mettre les fichiers json dans le répertoire localhost (C:\wamp64\www)
+Ensuite les deux json sont enregistrés dans les variables globales de config.js
